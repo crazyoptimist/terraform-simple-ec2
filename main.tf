@@ -1,8 +1,8 @@
 terraform {
   required_version = ">= 1.0.0"
   backend "s3" {
-    profile = "single"
-    bucket = "treez-nnvkdyiue-terraform"
+    profile = "aws-cred-profile-name"
+    bucket = "your-bucket-name"
     key = "terraform.tfstate"
     region = "us-west-2"
     encrypt = true
@@ -10,8 +10,8 @@ terraform {
 }
 
 provider "aws" {
+  profile = "aws-cred-profile-name"
   region = "us-west-2"
-  profile = "single"
 }
 
 module "networking" {

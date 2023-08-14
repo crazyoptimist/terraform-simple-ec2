@@ -3,7 +3,7 @@ resource "random_shuffle" "public_subnet_id" {
   result_count = 1
 }
 
-data "aws_ami" "ubuntu-focal" {
+data "aws_ami" "ubuntu" {
   most_recent = true
   owners = ["099720109477"]
   filter {
@@ -18,7 +18,7 @@ resource "aws_key_pair" "ssh-key" {
 }
 
 resource "aws_instance" "dev" {
-  ami = data.aws_ami.ubuntu-focal.id
+  ami = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   key_name = aws_key_pair.ssh-key.key_name
   subnet_id = join(",", random_shuffle.public_subnet_id.result)
